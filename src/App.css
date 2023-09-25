@@ -1,5 +1,5 @@
 * {
-  background-color: #999;
+  background-color: #fb8080;
 }
 
 .todo-create {
@@ -19,7 +19,7 @@
 }
 
 .todo-submit {
-  background-color: red;
+  background-color: rgb(182, 127, 127);
   color: white;
   border: none;
   padding: 0.5rem 0.5rem;

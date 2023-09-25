@@ -74,7 +74,7 @@ function App() {
     >
       <div className="App">
         <div className="todo-create">
-          <TodoInput />
+          <TodoInput />git push -u origin main
         </div>
         <Tabs />
         <div className="todo-wrapper">
