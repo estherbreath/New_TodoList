@@ -1,13 +1,17 @@
-import { createContext, useEffect, useRef } from "react";
+import { createContext, useEffect } from "react";
 import "./App.css";
 import { useState } from "react";
 import Todos from "./components/Todos";
 import TodoInput from "./components/TodoInput";
+import Completed from "./components/Completed";
+import Uncompleted from "./components/Uncompleted";
+import Tabs from "./components/Tabs";
 export const todosContext = createContext();
 function App() {
   const [todos, setTodos] = useState([]);
+  const [title, setTitle] = useState("");
   const [editId, setEditId] = useState(null);
-  const todoRef = useRef(null);
+  const [tabId, setTabId] = useState(1);
 
   useEffect(() => {
     let canceled = false;
@@ -48,7 +52,7 @@ function App() {
     e.preventDefault();
     setTodos([
       ...todos,
-      { title: todoRef.current.value, completed: false, id: todos.length + 1 },
+      { title: title, completed: false, id: todos.length + 1 },
     ]);
   };
 
@@ -57,7 +61,10 @@ function App() {
       value={{
         todos,
         editId,
-        todoRef,
+        title,
+        tabId,
+        setTabId,
+        setTitle,
         handleCheck,
         handleDelete,
         handleEdit,
@@ -69,8 +76,11 @@ function App() {
         <div className="todo-create">
           <TodoInput />
         </div>
+        <Tabs />
         <div className="todo-wrapper">
-          <Todos />
+          {tabId === 1 && <Todos />}
+          {tabId === 2 && <Completed />}
+          {tabId === 3 && <Uncompleted />}
         </div>
       </div>
     </todosContext.Provider>
